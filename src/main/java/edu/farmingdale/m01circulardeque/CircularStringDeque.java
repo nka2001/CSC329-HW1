@@ -33,7 +33,7 @@ public class CircularStringDeque implements Iterable<String> {
     public CircularStringDeque(int size) {
         this.data = new String[size];
         this.first = 0;
-        this.last = 0;
+        this.last = size - 1;//if it is set to 0, then there are errors present, first and last should not be 0
         this.count = 0;
         this.capacity = size;
 
@@ -54,10 +54,11 @@ public class CircularStringDeque implements Iterable<String> {
                 temp[i] = data[first];
                 first = nextIndex(first);
                 if (first == last) {
+                    temp[i] = data[first];
                     break;
                 }
             }
-            capacity *= 2;
+            capacity *= 2;//growth 
 
             data = new String[capacity];
 
@@ -102,6 +103,7 @@ public class CircularStringDeque implements Iterable<String> {
                 temp[i] = data[first];
                 first = nextIndex(first);
                 if (first == last) {
+                    temp[i] = data[first];
                     break;
                 }
             }

@@ -69,6 +69,7 @@ public class SmallDequeTest implements RunTest {
         // current state [front] C D E F[back]
         theJavaDeque.addLast("G");
         myStringDeque.addLast("G");
+        System.out.println(myStringDeque.getLast());
         System.out.println(myStringDeque.getFirst());
         // current state [front] C D E F G [back]
         System.out.println("At point 1, the deque is " + myStringDeque);
