@@ -44,7 +44,7 @@ public class CircularStringDeque implements Iterable<String> {
      *
      * @param addMe String to add
      */
-    public void addFirst(String addMe) {
+    public void addFirst(String addMe) {//im losing f, that is the issue 
 
          if (count == capacity) {
 
@@ -54,7 +54,7 @@ public class CircularStringDeque implements Iterable<String> {
                 temp[i] = data[first];
                 first = nextIndex(first);
                 if (first == last) {
-                    temp[i] = data[first];
+                    temp[i] = data[last];
                     break;
                 }
             }
@@ -67,7 +67,7 @@ public class CircularStringDeque implements Iterable<String> {
             }
 
             first = 0;
-            last = capacity / 2 - 1;
+            last = capacity / 2 - 2;
             
             
              first = previousIndex(first);
@@ -103,7 +103,7 @@ public class CircularStringDeque implements Iterable<String> {
                 temp[i] = data[first];
                 first = nextIndex(first);
                 if (first == last) {
-                    temp[i] = data[first];
+                    temp[i] = data[last];
                     break;
                 }
             }
@@ -116,7 +116,7 @@ public class CircularStringDeque implements Iterable<String> {
             }
 
             first = 0;
-            last = capacity / 2 - 1;
+            last = capacity / 2 -2 ; // something to do with this line, i think integer division is happening 
 
             last = nextIndex(last);
             data[last] = addMe;

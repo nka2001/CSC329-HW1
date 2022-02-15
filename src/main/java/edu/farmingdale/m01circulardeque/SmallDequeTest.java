@@ -157,6 +157,7 @@ public class SmallDequeTest implements RunTest {
         if (!rJava.equals(currentElement) || !rJava.equals(rStudent)) {
             return "Failed at A0016";
         }
+        System.out.println("At point 3, the deque is " + myStringDeque);
         // current state [front] E F G [back]
         currentElement = "G";
         if (!theJavaDeque.getLast().equals(currentElement) || !theJavaDeque.getLast().equals(myStringDeque.getLast())) {
