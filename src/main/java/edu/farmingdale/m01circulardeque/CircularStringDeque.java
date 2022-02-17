@@ -46,14 +46,14 @@ public class CircularStringDeque implements Iterable<String> {
      */
     public void addFirst(String addMe) {//adds first to the front of the deque
 
-         if (count == capacity) {//this is how we determine if the array is full or not
+        if (count == capacity) {//this is how we determine if the array is full or not
 
             String temp[] = new String[capacity];//create a temp array to store current data before copying
 
             for (int i = 0; i < capacity; i++) {//this will copy the data from data array to the temp array
                 temp[i] = data[first];//starts at first, since the new array needs to be in order
                 first = nextIndex(first);////iterates to the next element 
-             
+
             }
             capacity *= 2; //grows the capacity by the growth factor, in this case its two
 
@@ -65,15 +65,10 @@ public class CircularStringDeque implements Iterable<String> {
 
             first = 0;//sets first to 0
             last = capacity / 2 - 1;//sets last to the old capacity, which is divided by 2
-            
-            
-            
-             
+
             first = previousIndex(first);//after all the copying and re adding, first is moved back one, 
             data[first] = addMe;//data at index first is set to addMe
             count++;//count is adjusted
-            
-            
 
         } else {//if the array does not need to be copied, then 
             first = previousIndex(first);//first is moved back one
@@ -101,7 +96,7 @@ public class CircularStringDeque implements Iterable<String> {
                 first = nextIndex(first);
 
             }
-           
+
             capacity *= 2;
 
             data = new String[capacity];
@@ -111,7 +106,7 @@ public class CircularStringDeque implements Iterable<String> {
             }
 
             first = 0;
-            last = capacity / 2 - 1 ;  
+            last = capacity / 2 - 1;
 
             last = nextIndex(last);//then last is moved foward one position 
             data[last] = addMe;//data at index last is set to addMe
@@ -124,7 +119,7 @@ public class CircularStringDeque implements Iterable<String> {
 
             count++;//count is adjusted
         }
-        
+
     }
 
     /**
@@ -133,15 +128,17 @@ public class CircularStringDeque implements Iterable<String> {
      * @return A string, the former first item in the deque.
      */
     public String removeFirst() {
-      
-        
-        int PrevFirst = first;//sets first to the previous index
-        first = nextIndex(first);//moves first to the next index 
-        count--;//count is adjusted
 
-        return data[PrevFirst];//returns data at old first
-        
-   
+        if (!isEmpty()) {
+            int PrevFirst = first;//sets first to the previous index
+            first = nextIndex(first);//moves first to the next index 
+            count--;//count is adjusted
+
+            return data[PrevFirst];//returns data at old first
+        } else {
+            return "";
+        }
+
     }
 
     /**
@@ -150,11 +147,15 @@ public class CircularStringDeque implements Iterable<String> {
      * @return A String, the former last item in the deque
      */
     public String removeLast() {
-        int PrevLast = last;//sets the old last to prevLast
-        last = previousIndex(last);//moves last back one 
-        count--;//count is adjusted 
+        if (!isEmpty()) {
+            int PrevLast = last;//sets the old last to prevLast
+            last = previousIndex(last);//moves last back one 
+            count--;//count is adjusted 
 
-        return data[PrevLast];//returns the old last 
+            return data[PrevLast];//returns the old last 
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -163,7 +164,12 @@ public class CircularStringDeque implements Iterable<String> {
      * @return A string, the first item in the deque
      */
     public String getFirst() {
-        return data[first];//returns data at index first
+        if (!isEmpty()) {
+            return data[first];//returns data at index first
+
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -172,7 +178,11 @@ public class CircularStringDeque implements Iterable<String> {
      * @return A string, the last item in the deque
      */
     public String getLast() {
-        return data[last];//returns data at index last 
+        if (!isEmpty()) {
+            return data[last];//returns data at index last 
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -182,12 +192,12 @@ public class CircularStringDeque implements Iterable<String> {
      * @return a Boolean, if the deque is empty
      */
     public Boolean isEmpty() {// ask about this 
-        boolean emp = false;
-        if(count == 0){
-            emp = true;
+        boolean emp = true;//initially the deque is empty (true)
+        if (count != 0) {//if the count is 0. then...
+            emp = false;//the deque is not empty
         }
-        
-        return emp;
+
+        return emp;//returns true or false, then is negated in other methods
     }
 
     int nextIndex(int index) {
